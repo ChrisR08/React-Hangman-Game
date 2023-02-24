@@ -1,0 +1,20 @@
+/* Display Word  */
+.display-word-ul {
+    gap: 1vw;
+}
+
+.display-btn {
+    width: 2.75vw;
+    height: 2.75vw;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: var(--fs-500);
+    aspect-ratio: 1;
+    padding: 0.75vw;
+    border-radius: 0.75vw;
+    box-shadow: var(--key-shadow);
+    overflow: hidden;
+}
+
+.key-letter {
+    line-height: 0;
+}

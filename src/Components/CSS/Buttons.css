@@ -1,0 +1,88 @@
+/* Button Styles */
+.key-btn {
+    position: relative;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: var(--fs-400);
+    width: 2.75vw;
+    height: 2.75vw;
+    padding: 0.75vw;
+    border-radius: 0.75vw;
+    box-shadow: var(--key-shadow);
+    overflow: hidden;
+}
+
+.key-btn:after {
+    content: " ";
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-radius: 1.25vw;
+    background-color: var(--key-hover);
+    opacity: 0;
+    transition: all 0.45s ease-in-out;
+}
+
+.key-btn:hover:after,
+.key-btn:focus:after {
+    width: 100%;
+    height: 100%;
+    opacity: 1;
+}
+
+.key-btn:hover,
+.key-btn:focus {
+    cursor: pointer;
+}
+
+.key-btn:hover .key-letter:not(.esc) {
+    color: white;
+}
+
+.key-btn:active {
+    box-shadow: var(--key-inset-shadow);
+}
+
+.key-btn:active:after {
+    opacity: 0.2;
+}
+
+.key-letter {
+    line-height: 0;
+}
+/*  */
+.btn-wrapper {
+    display: flex;
+    gap: 1.5rem;
+}
+
+.input {
+    width: 48%;
+    border-radius: 1rem;
+    padding: 0.5rem 1rem;
+    border: 2px solid hsl(194, 61%, 24%);
+}
+
+.input:focus {
+    box-shadow: 0 0 4px 2px hsl(195, 86%, 11%);
+    outline: none;
+    border: 2px solid var(--clr-dark);
+}
+
+.input-btn {
+    width: 48%;
+    background-color: var(--clr-dark);
+    padding: 0.65rem 3rem;
+    border-radius: 1rem;
+    box-shadow: 0 0 4px 2px hsl(195, 86%, 11%);
+}
+
+.input-btn:hover,
+.input-btn:focus {
+    background-color: var(--clr-dark) / 0.95;
+    box-shadow: 0 0 4px 2px hsl(195, 86%, 11%);
+}
+
+.input-btn:active {
+    background-color: var(--clr-dark);
+    box-shadow: inset 0 0 2px 1px hsl(195, 86%, 11%);
+}
