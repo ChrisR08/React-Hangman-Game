@@ -23,7 +23,8 @@ To run the game, use the following command `npm start`
 
 This will start the development server and open the game in your default web browser at http://localhost:3000/.
 
-Game Rules
+## Game Rules
+
 At the start of the game, the user is presented with a series of underscores representing the word to be guessed.
 The user selects letters from the alphabet to guess the word. If the word contains the selected letter, it will display in the relevent position above the keyboard.
 The user has 10 incorrect guesses available before the game ends.
