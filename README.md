@@ -13,7 +13,7 @@ The game provides feedback on the correctness of the user's guesses, and ends wh
 To install and run the game locally, follow these steps:
 
 1. Clone the repository to your local machine using `git clone https://github.com/ChrisR08/hangman.git`
-2. Navigate to the project directory using `cd react-hangman-game`
+2. Navigate to the project directory using `cd hangman`
 3. Install the required dependencies using `npm install`
 
 ## Usage
