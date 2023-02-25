@@ -18,9 +18,8 @@ To install and run the game locally, follow these steps:
 
 ## Usage
 
-To run the game, use the following command:
+To run the game, use the following command `npm start`
 
-npm start
 
 This will start the development server and open the game in your default web browser at http://localhost:3000/.
 
