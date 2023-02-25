@@ -103,6 +103,12 @@ export function HelpModal() {
                             <p>Press the Esc key to exit the game</p>
                         </li>
                         <li>
+                            <p>
+                                You can use your keyboard, mouse or touchscreen
+                                device to play!
+                            </p>
+                        </li>
+                        <li>
                             <p>Hint: All words are coding related!</p>
                         </li>
                         <li>
@@ -282,6 +288,10 @@ export function RulesModal() {
                             selected.
                             <br />
                             Easy: 3-5 letters. Hard: 6-9 letters.
+                        </li>
+                        <li>
+                            Use your keyboard, mouse or touchscreen device to
+                            play.
                         </li>
                         <li>
                             If the letter you guessed is in the word, it will be

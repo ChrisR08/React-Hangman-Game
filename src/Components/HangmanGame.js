@@ -55,7 +55,7 @@ function HangmanGame() {
     // Returns the Hangman game to the GUI
     return (
         <>
-            <div className="flex flex-col even-spacing-m center-xy">
+            <div className="flex flex-col even-spacing-s center-xy">
                 <Hangman />
                 <DisplayWord />
             </div>

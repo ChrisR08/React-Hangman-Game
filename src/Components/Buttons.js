@@ -1,6 +1,5 @@
 // Buttons
-import React from "react";
-import { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { GameStateContext } from "../index";
 import useGameState from "../Hooks/useGameState";
 import "./CSS/Buttons.css";
@@ -44,38 +43,59 @@ export const KeyBtn = () => {
 
     // handleGuess passes the event to access the letter of the key pressed by the user
     // It works by calling guessLetter and passing the letter as an argument
-    const handleGuess = (e) => {
-        const inputLetter = e.target.innerText.toLowerCase();
-        guessLetter(inputLetter);
+    const handleGuess = (letter) => {
+        guessLetter(letter);
     };
 
-    const handleGuessType = (e) => {
+    const handleGuessType = (letter) => {
         // Gets the game word and splits it into letters in an array
         const splitWord = gameState.word.split("");
         // Checks if the letter the user entered is included in the word
-        const checkPassed = splitWord.includes(
-            e.target.innerText.toLowerCase()
-        );
+        const checkPassed = splitWord.includes(letter);
 
         // if check is false then gameState is set with the letter added to the array of incorrect guesses
         if (!checkPassed) {
             setGameState((prevState) => ({
                 ...prevState,
-                incorrectGuesses: [
-                    ...prevState.incorrectGuesses,
-                    e.target.innerText,
-                ],
+                incorrectGuesses: [...prevState.incorrectGuesses, letter],
             }));
         } else {
             setGameState((prevState) => ({
                 ...prevState,
-                correctGuesses: [
-                    ...prevState.correctGuesses,
-                    e.target.innerText,
-                ],
+                correctGuesses: [...prevState.correctGuesses, letter],
             }));
         }
     };
+
+    // Handles touch screen user input
+    const handleKeyPress = (e) => {
+        const letter = e.key.toLowerCase();
+
+        if (letters.includes(letter)) {
+            handleGuess(letter);
+            handleGuessType(letter);
+        }
+    };
+
+    // Handles keyboard user input
+    const handleKeyDown = (e) => {
+        // Check that the key pressed is a letter
+        if (letters.includes(e.key)) {
+            const letter = e.key.toLowerCase();
+
+            // Call the handleGuess and handleGuessType methods with the pressed key letter
+            handleGuess(letter);
+            handleGuessType(letter);
+        }
+    };
+
+    useEffect(() => {
+        window.addEventListener("keydown", handleKeyDown);
+
+        return () => {
+            window.removeEventListener("keydown", handleKeyDown);
+        };
+    });
 
     return (
         <>
@@ -93,9 +113,11 @@ export const KeyBtn = () => {
                     <li
                         key={index}
                         onClick={(e) => {
-                            handleGuess(e);
-                            handleGuessType(e);
+                            handleGuess(e.target.innerText.toLowerCase());
+                            handleGuessType(e.target.innerText.toLowerCase());
                         }}
+                        onKeyDown={handleKeyPress}
+                        tabIndex={0}
                         className="key-btn flex center-xy"
                     >
                         {/* Classes assign based on the return of incorrectGuesses, if true adds text-red to denote a wrong guess */}

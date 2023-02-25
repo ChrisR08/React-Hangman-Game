@@ -1,6 +1,6 @@
 /* Keyboard Styles */
 .keyboard-container {
-    padding: 2vw 2.5vw;
+    padding: 1.75vw 2.5vw;
     border-radius: 2.25vw;
     background-color: var(--background-dark);
     box-shadow: var(--keyboard-shadow);
@@ -9,7 +9,7 @@
 .keyboard-ul {
     display: grid;
     grid-template-columns: repeat(10, minmax(0, 1fr));
-    gap: calc(0.5rem + 1vw);
+    gap: calc(0.5rem + 0.75vw);
 }
 
 .space-bar {
@@ -21,7 +21,7 @@
     color: var(--clr-green);
     font-size: calc(var(--fs-400) - 0.5rem);
     width: 100%;
-    height: calc(1rem + 2.75vw);
+    height: calc(1rem + 2.5vw);
     padding: 0.75vw;
     border-radius: 1vw;
     box-shadow: var(--key-shadow);

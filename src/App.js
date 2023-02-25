@@ -9,7 +9,7 @@ function App() {
     return (
         <>
             <BrowserRouter>
-                <div className="section site-container flex flex-col center-xy even-spacing-l">
+                <div className="section site-container flex flex-col center-xy even-spacing-m">
                     <header className="App-header">
                         <h1 className="h1 fs-700 center-text center-x">
                             React Hangman Game
