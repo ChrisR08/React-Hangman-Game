@@ -1,9 +1,22 @@
-// Component contatining the words for use in the game
-
-function Words() {
+function GameWords() {
     const gameWords = [
         "html",
         "css",
+        "java",
+        "website",
+        "chrome",
+        "bing",
+        "browser",
+        "inspect",
+        "firefox",
+        "computer",
+        "desktop",
+        "laptop",
+        "mobile",
+        "viewport",
+        "google",
+        "microsoft",
+        "tech",
         "code",
         "coding",
         "node",
@@ -83,7 +96,8 @@ function Words() {
         "github",
         "trello",
     ];
+
     return gameWords;
 }
 
-export default Words;
+export default GameWords;

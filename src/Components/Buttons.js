@@ -1,63 +1,114 @@
 // Buttons
 import React from "react";
-import { Link } from "react-router-dom";
+import { useContext } from "react";
+import { GameStateContext } from "../index";
+import useGameState from "../Hooks/useGameState";
 import "./CSS/Buttons.css";
 
-export const KeyBtn = (props) => {
-    const letters = ["Esc"];
-    // For loop iterates through ASCII charcarters and pushes them to the alphabet array
-    for (let i = 65; i <= 90; i++) {
-        letters.push(String.fromCharCode(i));
-    }
-    // Destructuring props
-    const {
-        handleGuess,
-        handleWrongGuess,
-        isGuessCorrect,
-        incorrectGuesses,
-        correctGuess,
-    } = props;
+export const KeyBtn = () => {
+    // Defining the array to populate the keys
+    const letters = [
+        "q",
+        "w",
+        "e",
+        "r",
+        "t",
+        "y",
+        "u",
+        "i",
+        "o",
+        "p",
+        "a",
+        "s",
+        "d",
+        "f",
+        "g",
+        "h",
+        "j",
+        "k",
+        "l",
+        "z",
+        "x",
+        "c",
+        "v",
+        "b",
+        "n",
+        "m",
+    ];
+
+    // Gets the gameState and unpacks the relevent states for use in the component methods
+    const { gameState, setGameState } = useContext(GameStateContext);
+    const { guessLetter } = useGameState();
+    const incorrectGuesses = gameState.incorrectGuesses;
+    const correctGuesses = gameState.correctGuesses;
+
+    // handleGuess passes the event to access the letter of the key pressed by the user
+    // It works by calling guessLetter and passing the letter as an argument
+    const handleGuess = (e) => {
+        const inputLetter = e.target.innerText.toLowerCase();
+        guessLetter(inputLetter);
+    };
+
+    const handleGuessType = (e) => {
+        // Gets the game word and splits it into letters in an array
+        const splitWord = gameState.word.split("");
+        // Checks if the letter the user entered is included in the word
+        const checkPassed = splitWord.includes(
+            e.target.innerText.toLowerCase()
+        );
+
+        // if check is false then gameState is set with the letter added to the array of incorrect guesses
+        if (!checkPassed) {
+            setGameState((prevState) => ({
+                ...prevState,
+                incorrectGuesses: [
+                    ...prevState.incorrectGuesses,
+                    e.target.innerText,
+                ],
+            }));
+        } else {
+            setGameState((prevState) => ({
+                ...prevState,
+                correctGuesses: [
+                    ...prevState.correctGuesses,
+                    e.target.innerText,
+                ],
+            }));
+        }
+    };
 
     return (
         <>
             {letters.map((letter, index) => {
                 // Checks if the array of incorrect guesses includes the current letter, returns true/false
                 const isIncorrectGuess = incorrectGuesses.includes(
-                    letter.toUpperCase()
+                    letter.toLowerCase()
                 );
-                // The first key is Esc which links to the "homepage"
-                if (index === 0) {
-                    return (
-                        <li key={index} className="key-btn flex center-xy">
-                            <Link to="/" className="key-letter center-text">
-                                {letter}
-                            </Link>
-                        </li>
-                    );
-                }
-                // The letter keys are passed the methods that were passed as props
-                else {
-                    return (
-                        <li
-                            key={index}
-                            onClick={(e) => {
-                                handleGuess(e);
-                                handleWrongGuess(e);
-                            }}
-                            className="key-btn flex center-xy"
+                // Checks if the array of correct guesses includes the current letter, returns true/false
+                const isCorrectGuess = correctGuesses.includes(
+                    letter.toLowerCase()
+                );
+
+                return (
+                    <li
+                        key={index}
+                        onClick={(e) => {
+                            handleGuess(e);
+                            handleGuessType(e);
+                        }}
+                        className="key-btn flex center-xy"
+                    >
+                        {/* Classes assign based on the return of incorrectGuesses, if true adds text-red to denote a wrong guess */}
+                        <p
+                            id={index}
+                            className={`key-letter center-text clickable-parent ${
+                                isIncorrectGuess ? "text-red" : ""
+                            } ${isCorrectGuess ? "text-green" : ""}`}
                         >
-                            {/* Classes assign based on the return of incorrectGuesses, if true adds text-red to denote a wrong guess */}
-                            <p
-                                id={index}
-                                className={`key-letter center-text clickable-parent ${
-                                    isIncorrectGuess ? "text-red" : ""
-                                }`}
-                            >
-                                {letter}
-                            </p>
-                        </li>
-                    );
-                }
+                            {letter}
+                        </p>
+                    </li>
+                );
             })}
         </>
     );

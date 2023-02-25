@@ -5,8 +5,12 @@ import { DisplayBtn } from "./Buttons";
 
 function DisplayWord() {
     const { gameState } = useGameState();
-    // Gets the word used in the game from gameState and splits into letters in an array
-    const wordLetters = gameState.word.split("");
+    // Gets the word and level used in the game from localStorage
+    const word = gameState.word;
+
+    // Splits the word into letters and stores in an array
+    const wordLetters = word ? word.split("") : [];
+
     // Gets the guessed letters from gameState and stores in an array
     const guessedLetters = gameState.letters;
 

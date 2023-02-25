@@ -28,7 +28,7 @@ function Hangman() {
 
     // Returns the won/lost message based on conditions
     const displayWonLost = () => {
-        if (numOfGuesses > 10) {
+        if (numOfGuesses >= 10) {
             return <p className="text-red fs-600 fw-700">You Lost!</p>;
         } else if (numOfIncorrectGuesses < 10 && gameState.gameWon) {
             return <p className="text-green fs-600 fw-700">You Won!</p>;
@@ -85,13 +85,15 @@ function Hangman() {
 
     return (
         <>
-            {/* Display the WonLost Component if conditions are met */}
-            {displayWonLost()}
-            <div className="hangman-container game-grid">
+            <div className="hangman-container flex flex-col center-xy">
+                {/* Display the WonLost Component if conditions are met */}
+                {displayWonLost()}
                 {/* displayHangman conditionally renders the component. 
                 Svg element makes up the whole hangman image */}
-                <div className="hangman-svg">{displayHangman()}</div>
-                <GuessCount />
+                <div className="game-grid">
+                    <div className="hangman-svg">{displayHangman()}</div>
+                    <GuessCount />
+                </div>
             </div>
         </>
     );

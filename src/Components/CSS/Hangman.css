@@ -3,6 +3,7 @@
     width: 100%;
     gap: 3vw;
     margin-bottom: 1vw;
+    min-height: 19.5vw;
 }
 
 .hangman {

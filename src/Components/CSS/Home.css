@@ -1,0 +1,18 @@
+/* Home Page */
+.link-wrapper {
+    position: relative;
+}
+.home-link {
+    transition: 0.5s ease-in-out;
+}
+.home-link.easy:hover,
+.home-link.easy:focus,
+.home-link.rules:hover,
+.homelink.rules:focus {
+    color: var(--clr-green);
+}
+
+.home-link.hard:hover,
+.home-link.hard:focus {
+    color: var(--clr-red);
+}
