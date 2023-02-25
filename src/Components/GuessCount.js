@@ -7,7 +7,7 @@ function GuessCount() {
     // Gets the number of max guesses from gameState
     const maxGuesses = parseInt(gameState.maxGuesses);
     // Gets the current number of guesses from gameState
-    const numOfGuesses = parseInt(gameState.letters.length);
+    const numOfGuesses = parseInt(gameState.inCorrectCount);
     // Calculates number of guesses left
     let guessesLeft = maxGuesses - numOfGuesses;
 

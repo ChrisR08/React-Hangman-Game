@@ -22,13 +22,15 @@ function Hangman() {
     const { gameState } = useContext(GameStateContext);
 
     // Gets the number of incorrect guess from gameState
-    const numOfIncorrectGuesses = parseInt(gameState.incorrectGuesses.length);
-    // Gets the number of guesses from gameState
-    const numOfGuesses = parseInt(gameState.letters.length);
+    const numOfIncorrectGuesses = parseInt(gameState.inCorrectCount);
+    // Gets the number of max guesses from gameState
+    const maxGuesses = parseInt(gameState.maxGuesses);
+    // Calculates number of guesses left
+    let guessesLeft = maxGuesses - numOfIncorrectGuesses;
 
     // Returns the won/lost message based on conditions
     const displayWonLost = () => {
-        if (numOfGuesses >= 10) {
+        if (guessesLeft <= 0) {
             return <p className="text-red fs-600 fw-700">You Lost!</p>;
         } else if (numOfIncorrectGuesses < 10 && gameState.gameWon) {
             return <p className="text-green fs-600 fw-700">You Won!</p>;
